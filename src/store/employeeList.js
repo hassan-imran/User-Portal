@@ -22,6 +22,11 @@ export const employeeSlice = createSlice({
         addEmployee: (state, { payload }) => {
             state.value = [...state.value, payload]
         },
+        // removeEmployee: (state, {payload}) => {
+        //     state.value.forEach(user => {
+        //         if(user.userName == payload){}
+        //     });
+        // },
     },
 })
 
