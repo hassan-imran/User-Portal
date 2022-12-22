@@ -49,8 +49,7 @@ function SignUp() {
         // if checkUnique is true, publish changes to the state i.e. add the user
 
         if (checkUnique) {
-            const newEmployeeList = [...employeeList, { userName, pass, firstName, lastName }];
-            dispatch(addEmployee(newEmployeeList));
+            dispatch(addEmployee({ userName, pass, firstName, lastName }));
             navigate("/login");
             dispatch(updateError({
                 msg: 'Successfully added user, please login.',

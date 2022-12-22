@@ -20,17 +20,27 @@ export const employeeSlice = createSlice({
     },
     reducers: {
         addEmployee: (state, { payload }) => {
-            state.value = [...state.value, payload]
+            state.value = [...state.value, payload];
         },
-        // removeEmployee: (state, {payload}) => {
-        //     state.value.forEach(user => {
-        //         if(user.userName == payload){}
-        //     });
-        // },
+        removeEmployee: (state, { payload }) => {
+            console.log(payload);
+            // console.log(state.userName);
+
+            let newList = [];
+            // state.value.forEach((user) => {
+            //     if (payload !== user.userName) {
+            //         newList.push(user);
+            //     }
+            // })
+            newList = state.value.filter(item => item.userName !== payload);
+
+            // console.log(newList);
+            state.value = [...newList];
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { addEmployee } = employeeSlice.actions
+export const { addEmployee, removeEmployee } = employeeSlice.actions
 
 export default employeeSlice.reducer

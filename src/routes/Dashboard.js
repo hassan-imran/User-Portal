@@ -1,14 +1,19 @@
 import React from "react";
 import { Button, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
+import { removeEmployee } from "../store/employeeList";
+import { updateAuth } from "../store/auth";
 
 function Dashboard() {
 
     const auth = useSelector((state) => state.auth.value);
     const employeeList = useSelector((state) => state.employees.value);
+    const dispatch = useDispatch();
+
+    // const deleteHandler = (user) = {}
 
     return (
         <>
@@ -46,7 +51,12 @@ function Dashboard() {
                                             {user.lastName}
                                         </td>
                                         <td>
-                                            <Button variant="danger" id={key}>
+                                            <Button variant="danger" id={key} onClick={(key) => {
+                                                dispatch(removeEmployee(user.userName));
+                                                // if (user.userName == auth.userName) {
+                                                //     dispatch(updateAuth(false));
+                                                // }
+                                            }}>
                                                 Delete User
                                             </Button>
                                         </td>
