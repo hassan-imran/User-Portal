@@ -13,7 +13,10 @@ function Dashboard() {
     const employeeList = useSelector((state) => state.employees.value);
     const dispatch = useDispatch();
 
-    // const deleteHandler = (user) = {}
+    const deleteHandler = (user) => {
+        // console.log(user.userName);
+        dispatch(removeEmployee(user));
+    }
 
     return (
         <>
@@ -51,12 +54,9 @@ function Dashboard() {
                                             {user.lastName}
                                         </td>
                                         <td>
-                                            <Button variant="danger" id={key} onClick={(key) => {
-                                                dispatch(removeEmployee(user.userName));
-                                                // if (user.userName == auth.userName) {
-                                                //     dispatch(updateAuth(false));
-                                                // }
-                                            }}>
+                                            <Button variant="danger" id={key} onClick={
+                                                () => deleteHandler(user.userName)
+                                            }>
                                                 Delete User
                                             </Button>
                                         </td>

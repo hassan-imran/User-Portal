@@ -23,18 +23,9 @@ export const employeeSlice = createSlice({
             state.value = [...state.value, payload];
         },
         removeEmployee: (state, { payload }) => {
-            console.log(payload);
-            // console.log(state.userName);
-
             let newList = [];
-            // state.value.forEach((user) => {
-            //     if (payload !== user.userName) {
-            //         newList.push(user);
-            //     }
-            // })
+            // console.log(payload.userName);
             newList = state.value.filter(item => item.userName !== payload);
-
-            // console.log(newList);
             state.value = [...newList];
         },
     },

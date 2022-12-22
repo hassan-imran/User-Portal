@@ -36,7 +36,6 @@ function Login() {
         let counter = 0;
 
         employeeList.forEach((x) => {
-            console.log(x.userName);
             if (x.userName.toLowerCase() === userName.toLowerCase()) {
                 if (x.pass === pass) {
                     dispatch(updateAuth({
