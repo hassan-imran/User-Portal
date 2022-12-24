@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import ErrorFlag from '.././ErrorFlag';
 import { updateError } from '../store/error';
 import auth, { updateAuth } from '../store/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, redirect, Link } from 'react-router-dom';
 
 
 function Login() {
@@ -27,8 +27,8 @@ function Login() {
         //Do not submit if either of the input fields are empty
         if (!userName || !pass) {
             dispatch(updateError({
-                msg:'One (or more) of the required fields (marked by *) are empty',
-                color:'danger',
+                msg: 'One (or more) of the required fields (marked by *) are empty',
+                color: 'danger',
             }));
             return;
         };
@@ -48,8 +48,8 @@ function Login() {
                     return;
                 }
                 dispatch(updateError({
-                    msg:'Password is incorrect.',
-                    color:'danger',
+                    msg: 'Password is incorrect.',
+                    color: 'danger',
                 }));
                 return;
             }
@@ -58,8 +58,8 @@ function Login() {
 
         if (counter === employeeList.length) {
             dispatch(updateError({
-                msg:'Username not found.',
-                color:'danger',
+                msg: 'Username not found.',
+                color: 'danger',
             }));
         }
 
@@ -102,9 +102,11 @@ function Login() {
 
                                 <p className='text-center'>Not a User Portal member yet?</p>
 
-                                <Button variant="secondary" href="/signup">
-                                    Sign up
-                                </Button>
+                                <Link to={"/signup"} className="d-grid">
+                                    <Button variant="secondary">
+                                        Sign up
+                                    </Button>
+                                </Link>
                             </Form>
                         </Card>
                     </Row>

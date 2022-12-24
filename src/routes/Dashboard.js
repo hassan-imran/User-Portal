@@ -15,7 +15,12 @@ function Dashboard() {
 
     const deleteHandler = (user) => {
         // console.log(user.userName);
+        if(auth.userName !== user){
+            dispatch(removeEmployee(user));
+            return;
+        }
         dispatch(removeEmployee(user));
+        dispatch(updateAuth(false));
     }
 
     return (

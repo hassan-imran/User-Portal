@@ -1,30 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+    value: [
+        {
+            userName: 'admin',
+            pass: 'admin123',
+            firstName: 'Robot',
+            lastName: 'Admin',
+        }
+    ],
+}
+
 export const employeeSlice = createSlice({
     name: 'employees',
-    initialState: {
-        value: [
-            {
-                userName: 'admin',
-                pass: 'admin123',
-                firstName: 'Robot',
-                lastName: 'Admin',
-            },
-            {
-                userName: 'faheem',
-                pass: 'faheem123',
-                firstName: 'Muhammad',
-                lastName: 'Faheem',
-            },
-        ],
-    },
+    initialState,
     reducers: {
         addEmployee: (state, { payload }) => {
-            state.value = [...state.value, payload];
+            // state.value = [...state.value, payload];
+            state.value.push(payload);
         },
         removeEmployee: (state, { payload }) => {
             let newList = [];
-            // console.log(payload.userName);
             newList = state.value.filter(item => item.userName !== payload);
             state.value = [...newList];
         },

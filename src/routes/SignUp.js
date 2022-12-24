@@ -6,7 +6,7 @@ import ErrorFlag from '.././ErrorFlag';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateColor, updateError } from '../store/error';
 import { addEmployee } from '../store/employeeList';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function SignUp() {
     const [userName, setUserName] = useState('');
@@ -39,8 +39,6 @@ function SignUp() {
 
         employeeList.forEach((x) => {
             if (x.userName.toLowerCase() === userName.toLowerCase()) {
-                // setShow(true);
-                // add a flag to not allow duplicate usernames
                 checkUnique = false;
                 return;
             }
@@ -116,9 +114,11 @@ function SignUp() {
 
                                 <p className='text-center'>Already an existing User Portal member?</p>
 
-                                <Button variant="secondary" href="/login">
+                                <Link to={"/login"} className="d-grid">
+                                    <Button variant="secondary">
                                     Log in to your account
-                                </Button>
+                                    </Button>
+                                </Link>
 
                             </Form>
                         </Card>
