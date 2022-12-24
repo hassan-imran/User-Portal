@@ -50,11 +50,8 @@ function Dashboard() {
     return (
         <>
             <Container>
-                <Row>
-                    <h1 className='display-2 mt-5'>Welcome {auth.firstName} {auth.lastName}!</h1>
-                    <hr />
-                    <h4 className='display-6 mt-5'>Your Username is "{auth.userName}"*</h4>
-                    <p>*Without the quotes</p>
+                <Row className="mb-4">
+                    <h4 className='display-6 mt-5'>Welcome <span className="fw-bold">{auth.firstName} {auth.lastName}</span>!</h4>
                 </Row>
 
                 <Card className='p-4 shadow bg-body rounded'>
