@@ -7,7 +7,13 @@ const initialState = {
             pass: 'admin123',
             firstName: 'Robot',
             lastName: 'Admin',
-        }
+        },
+        {
+            userName: 'faheem',
+            pass: 'faheem123',
+            firstName: 'Muhammad',
+            lastName: 'Faheem',
+        },
     ],
 }
 
