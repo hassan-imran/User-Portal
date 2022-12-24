@@ -13,7 +13,6 @@ function Dashboard() {
     const [modalShow, setModalShow] = useState(false);
 
     const deleteHandler = (user) => {
-        // console.log(user.userName);
         if (auth.userName !== user) {
             dispatch(removeEmployee(user));
             return;

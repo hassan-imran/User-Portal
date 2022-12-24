@@ -17,6 +17,8 @@ function App() {
 
   return (
     <div className="App">
+      
+      {/* Conditional rendering the route */}
 
       {auth ? (<>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

@@ -22,7 +22,6 @@ export const employeeSlice = createSlice({
     initialState,
     reducers: {
         addEmployee: (state, { payload }) => {
-            // state.value = [...state.value, payload];
             state.value.push(payload);
         },
         removeEmployee: (state, { payload }) => {
@@ -33,7 +32,7 @@ export const employeeSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
+
 export const { addEmployee, removeEmployee } = employeeSlice.actions
 
 export default employeeSlice.reducer
