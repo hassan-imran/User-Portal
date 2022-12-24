@@ -5,8 +5,8 @@ import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import ErrorFlag from '.././ErrorFlag';
 import { updateError } from '../store/error';
-import auth, { updateAuth } from '../store/auth';
-import { useNavigate, redirect, Link } from 'react-router-dom';
+import { updateAuth } from '../store/auth';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 function Login() {
@@ -16,7 +16,6 @@ function Login() {
     const [pass, setPassword] = useState('');
 
     const employeeList = useSelector((state) => state.employees.value);
-    const auth = useSelector((state) => state.auth.value);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -102,7 +101,7 @@ function Login() {
 
                                 <p className='text-center'>Not a User Portal member yet?</p>
 
-                                <Link to={"/signup"} className="d-grid">
+                                <Link to={"/signup"} className="d-grid text-decoration-none">
                                     <Button variant="secondary">
                                         Sign up
                                     </Button>

@@ -1,27 +1,17 @@
-import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Login from "./routes/Login";
 import { updateAuth } from "./store/auth";
-import { addEmployee } from "./store/employeeList";
 
 
 import ErrorPage from "./routes/ErrorPage";
 import SignUp from './routes/SignUp';
 import Dashboard from './routes/Dashboard';
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Routes, Route, Navigate, Link } from "react-router-dom";
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+
 
 function App() {
 
-  const [userName, setUserName] = useState('');
-  const [pass, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  const employeeList = useSelector((state) => state.employees.value);
   const auth = useSelector((state) => state.auth.value);
   const dispatch = useDispatch();
 
@@ -66,11 +56,31 @@ function App() {
       </>) : (<>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/">User Portal</Navbar.Brand>
+
+
+            <Navbar.Brand>
+              <Link to="/"  className="text-reset text-decoration-none">
+                User Portal
+              </Link>
+            </Navbar.Brand>
+
             <Nav className="me-auto">
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/signup">Sign up</Nav.Link>
+
+              <Nav.Link>
+                <Link to="/login" className="text-reset text-decoration-none">
+                  Login
+                </Link>
+              </Nav.Link>
+
+              <Nav.Link>
+                <Link to="/signup" className="text-reset text-decoration-none">
+                  Sign up
+                </Link>
+              </Nav.Link>
+
             </Nav>
+
+
           </Container>
         </Navbar>
 

@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import ErrorFlag from '.././ErrorFlag';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateColor, updateError } from '../store/error';
+import { updateError } from '../store/error';
 import { addEmployee } from '../store/employeeList';
 import { useNavigate, Link } from 'react-router-dom';
 
-function SignUp() {
+function SignUpForm({isModal}) {
+
     const [userName, setUserName] = useState('');
     const [pass, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -27,8 +28,8 @@ function SignUp() {
         //Do not submit if either of the input fields are empty
         if (!userName || !pass || !firstName || !lastName) {
             dispatch(updateError({
-                msg:'One (or more) of the required fields (marked by *) are empty',
-                color:'danger',
+                msg: 'One (or more) of the required fields (marked by *) are empty',
+                color: 'danger',
             }));
             return;
         };
@@ -48,9 +49,16 @@ function SignUp() {
 
         if (checkUnique) {
             dispatch(addEmployee({ userName, pass, firstName, lastName }));
-            navigate("/login");
+            if (!isModal) {
+                navigate("/login");
+                dispatch(updateError({
+                    msg: 'Successfully added user, please login.',
+                    color: 'success',
+                }));
+                return;
+            }
             dispatch(updateError({
-                msg: 'Successfully added user, please login.',
+                msg: 'Successfully added user.',
                 color: 'success',
             }));
             return;
@@ -69,6 +77,42 @@ function SignUp() {
     }
 
     return (
+        <Form className='d-grid'>
+
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-default">First Name *</InputGroup.Text>
+                <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setFirstName(e.target.value)} />
+            </InputGroup>
+
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-default">Last Name *</InputGroup.Text>
+                <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setLastName(e.target.value)} />
+            </InputGroup>
+
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-default">UserName *</InputGroup.Text>
+                <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setUserName(e.target.value)} />
+            </InputGroup>
+
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-default">Password *</InputGroup.Text>
+                <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" type='password' onChange={e => setPassword(e.target.value)} />
+            </InputGroup>
+
+            <ErrorFlag />
+
+            <Button variant="primary" onClick={handleSubmit} >
+                Let's Go!
+            </Button>
+
+        </Form>
+    )
+}
+
+function SignUp() {
+
+
+    return (
         <>
 
             <Container>
@@ -81,46 +125,18 @@ function SignUp() {
 
                 <Container className='mt-5 mb-5'>
                     <Row xs={2}>
+
                         <Card className='p-4 shadow bg-body rounded'>
-                            <Form className='d-grid'>
+                            <SignUpForm isModal={false} />
+                            <hr />
 
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="inputGroup-sizing-default">First Name *</InputGroup.Text>
-                                    <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setFirstName(e.target.value)} />
-                                </InputGroup>
+                            <p className='text-center'>Already an existing User Portal member?</p>
 
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="inputGroup-sizing-default">Last Name *</InputGroup.Text>
-                                    <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setLastName(e.target.value)} />
-                                </InputGroup>
-
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="inputGroup-sizing-default">UserName *</InputGroup.Text>
-                                    <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" onChange={e => setUserName(e.target.value)} />
-                                </InputGroup>
-
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="inputGroup-sizing-default">Password *</InputGroup.Text>
-                                    <Form.Control aria-label="Default" aria-describedby="inputGroup-sizing-default" type='password' onChange={e => setPassword(e.target.value)} />
-                                </InputGroup>
-
-                                <ErrorFlag />
-
-                                <Button variant="primary" href="/signup" onClick={handleSubmit} >
-                                    Let's Go!
-                                </Button>
-
-                                <hr />
-
-                                <p className='text-center'>Already an existing User Portal member?</p>
-
-                                <Link to={"/login"} className="d-grid">
-                                    <Button variant="secondary">
+                            <Link to={"/login"} className="d-grid text-decoration-none">
+                                <Button variant="secondary">
                                     Log in to your account
-                                    </Button>
-                                </Link>
-
-                            </Form>
+                                </Button>
+                            </Link>
                         </Card>
                     </Row>
                 </Container>
@@ -132,3 +148,4 @@ function SignUp() {
 }
 
 export default SignUp;
+export { SignUpForm };
