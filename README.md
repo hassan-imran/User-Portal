@@ -1,4 +1,4 @@
-# Dashboard App
+# User Portal App
 
 ## Group Members
 
